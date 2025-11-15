@@ -26,9 +26,9 @@
 
     let settings = load();
 
-    /* ================================
-       CSS
-    ================================= */
+    /* ==========================================
+       CSS — phiên bản mini
+    ========================================== */
     GM_addStyle(`
         #md-overlay-dark, #md-overlay-eyecare {
             position: fixed; inset: 0; pointer-events: none; z-index: 999997; transition: all 0.3s;
@@ -36,45 +36,68 @@
         #md-overlay-dark { background: #000; }
         #md-overlay-eyecare { background: rgba(255,220,140,1); mix-blend-mode: multiply; }
 
+        /* PANEL MINI */
         #md-panel {
             position: fixed;
-            width: 180px; background: rgba(30,30,30,0.95);
-            color: #fff; font-family: system-ui; font-size: 14px;
-            border-radius: 14px; padding: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-            z-index: 999999; transition: opacity 0.3s ease;
-            opacity: 0; pointer-events: none;
+            width: 150px;
+            background: rgba(30,30,30,0.95);
+            color: #fff;
+            font-family: system-ui;
+            font-size: 12px;          /* nhỏ hơn */
+            border-radius: 10px;
+            padding: 8px;             /* thu gọn */
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+            z-index: 999999;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
             user-select: none;
         }
         #md-panel.show {
-            opacity: 1; pointer-events: auto;
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        #md-panel h3 { margin: 6px 0; font-weight: 600; }
-        #md-panel input[type="range"] { width: 100%; margin: 4px 0; }
+        #md-panel h3 {
+            margin: 4px 0;
+            font-size: 12px;          /* thu nhỏ */
+            font-weight: 600;
+        }
+
+        #md-panel input[type="range"] {
+            width: 100%; margin: 2px 0;
+        }
 
         #md-panel button {
-            width: 100%; padding: 8px; margin-top: 6px;
-            border: none; border-radius: 8px; font-weight: bold;
-            cursor: pointer; background: #555; color: #fff;
-            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; padding: 6px;    /* nhỏ hơn */
+            margin-top: 4px;
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;              /* nhỏ lại */
+            font-weight: bold;
+            cursor: pointer;
+            background: #555; color: #fff;
+            display: flex; align-items: center;
+            justify-content: space-between;
             transition: background 0.2s;
         }
         #md-panel button.off { background: #aaa; color: #222; }
-        #md-panel button:hover { background: #777; }
 
+        /* MINI TOGGLE BUTTON */
         #md-toggle-ui {
             position: fixed;
-            width: 36px; height: 36px;
+            bottom: 24px; right: 24px;
+            width: 30px; height: 30px;     /* nhỏ hơn */
             background: #555; color: #fff;
-            border-radius: 50%; display: flex;
-            justify-content: center; align-items: center;
-            cursor: pointer; font-size: 18px;
-            z-index: 1000000; transition: background 0.2s;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+            font-size: 16px;              /* nhỏ hơn */
+            z-index: 1000000;
+            transition: background 0.2s;
         }
         #md-toggle-ui:hover { background: #777; }
 
-        /* Prevent text selection during drag */
         .md-no-select { user-select: none !important; }
     `);
 
@@ -87,16 +110,14 @@
     document.body.appendChild(overlayEye);
 
     /* ================================
-       Toggle UI button
+       Toggle UI (nút ẩn/hiện)
     ================================= */
     const toggleUI = document.createElement('div');
     toggleUI.id = 'md-toggle-ui';
-    toggleUI.textContent = '≡';
+    toggleUI.textContent = '≡';  // icon giữ nguyên
     document.body.appendChild(toggleUI);
 
-    /* ================================
-       Panel
-    ================================= */
+    /* PANEL */
     const panel = document.createElement('div'); panel.id = 'md-panel';
     panel.innerHTML = `
         <h3>Chế độ tối</h3>
@@ -114,9 +135,7 @@
     `;
     document.body.appendChild(panel);
 
-    /* ================================
-       Element references
-    ================================= */
+    /* ELEMENTS */
     const darkRange = panel.querySelector('#md-dark-range');
     const darkVal = panel.querySelector('#md-dark-val');
     const darkBtn = panel.querySelector('#md-dark-toggle');
@@ -126,9 +145,11 @@
     const focusBtn = panel.querySelector('#md-focus-toggle');
 
     /* ================================
-       Update UI states
+       UPDATE UI
     ================================= */
     function update() {
+
+        // Dark mode
         overlayDark.style.display = settings.dark.enabled ? 'block' : 'none';
         overlayDark.style.opacity = settings.dark.opacity;
         darkRange.value = settings.dark.opacity;
@@ -137,6 +158,7 @@
         darkBtn.querySelector('.text').textContent = settings.dark.enabled ? 'Bật' : 'Tắt';
         darkBtn.className = settings.dark.enabled ? '' : 'off';
 
+        // EyeCare
         overlayEye.style.display = settings.eyeCare.enabled ? 'block' : 'none';
         overlayEye.style.opacity = settings.eyeCare.strength;
         eyeRange.value = settings.eyeCare.strength;
@@ -145,14 +167,17 @@
         eyeBtn.querySelector('.text').textContent = settings.eyeCare.enabled ? 'Bật' : 'Tắt';
         eyeBtn.className = settings.eyeCare.enabled ? '' : 'off';
 
+        // Focus
         focusBtn.querySelector('.icon').textContent = settings.focus ? '🧘' : '🚫';
         focusBtn.querySelector('.text').textContent = settings.focus ? 'Bật' : 'Tắt';
         focusBtn.className = settings.focus ? '' : 'off';
         applyFocus();
 
+        // UI position
         panel.style.left = settings.pos.x + 'px';
         panel.style.top = settings.pos.y + 'px';
 
+        // Show/Hide UI
         panel.classList.toggle('show', settings.uiVisible);
     }
 
@@ -161,33 +186,32 @@
     ================================= */
     function applyFocus() {
         if (settings.focus) {
-            document.querySelectorAll('header, footer, nav, aside, [class*="sidebar"], [class*="ads"]').forEach(e => {
-                e.style.display = 'none';
+            document.querySelectorAll('header, footer, nav, aside, [class*="sidebar"], [class*="ads"]').forEach(e=>{
+                e.style.display='none';
             });
         } else {
-            document.querySelectorAll('header, footer, nav, aside, [class*="sidebar"], [class*="ads"]').forEach(e => {
-                e.style.display = '';
+            document.querySelectorAll('header, footer, nav, aside, [class*="sidebar"], [class*="ads"]').forEach(e=>{
+                e.style.display='';
             });
         }
     }
 
     /* ================================
-       DRAG TO MOVE PANEL
+       DRAG PANEL
     ================================= */
-    let dragging = false;
-    let offsetX = 0, offsetY = 0;
+    let dragging = false, dx = 0, dy = 0;
 
     panel.addEventListener('mousedown', e => {
         dragging = true;
-        offsetX = e.clientX - panel.getBoundingClientRect().left;
-        offsetY = e.clientY - panel.getBoundingClientRect().top;
+        dx = e.clientX - panel.getBoundingClientRect().left;
+        dy = e.clientY - panel.getBoundingClientRect().top;
         panel.classList.add('md-no-select');
     });
 
     document.addEventListener('mousemove', e => {
         if (!dragging) return;
-        settings.pos.x = e.clientX - offsetX;
-        settings.pos.y = e.clientY - offsetY;
+        settings.pos.x = e.clientX - dx;
+        settings.pos.y = e.clientY - dy;
         save(settings);
         update();
     });
@@ -198,7 +222,7 @@
     });
 
     /* ================================
-       Events
+       BUTTON EVENTS
     ================================= */
     toggleUI.onclick = () => {
         settings.uiVisible = !settings.uiVisible;
@@ -236,9 +260,5 @@
         update();
     };
 
-    /* ================================
-       INIT
-    ================================= */
     update();
-
 })();
