@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name         Truyện Tranh – Reading Mode
-// @namespace    https://github.com/azuzuzuzuzu/READING-MODE
-// @version      2.0
-// @description  Dark mode, eye care, focus mode cho trang truyện tranh
-// @match        *://*/*
-// @grant        GM_addStyle
-// @run-at       document-body
-// ==/UserScript==
-
 (function () {
     'use strict';
 
