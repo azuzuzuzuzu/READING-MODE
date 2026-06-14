@@ -1,0 +1,13 @@
+// ==UserScript==
+// @name         Tìm em, tìm em trong bóng đêm..
+// @namespace    https://github.com/azuzuzuzuzu/READING-MODE
+// @version      2.36
+// @description  hihibygpti
+// @match        *://*/*
+// @run-at       document-body
+// @require      https://raw.githubusercontent.com/azuzuzuzuzu/READING-MODE/refs/heads/main/TRUYENTRANH.js
+// @updateURL    https://raw.githubusercontent.com/azuzuzuzuzu/READING-MODE/refs/heads/main/TRUYENTRANH.js
+// @downloadURL  https://raw.githubusercontent.com/azuzuzuzuzu/READING-MODE/refs/heads/main/TRUYENTRANH.js
+// @grant        GM_addStyle
+// ==/UserScript==
+console.log('aluhubalakaaakaakaka');
