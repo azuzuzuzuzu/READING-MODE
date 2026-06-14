@@ -1,3 +1,4 @@
+//small update
 (function () {
     'use strict';
 
@@ -31,9 +32,10 @@
         #rm-dark { background: #000; }
         #rm-eye  { background: rgb(255,200,80); mix-blend-mode: multiply; }
 
-        /* FAB */
+        /* FAB — cố định góc dưới phải, không phụ thuộc panel */
         #rm-fab {
             position: fixed;
+            bottom: 20px; right: 20px;
             width: 36px; height: 36px;
             border-radius: 50%;
             background: linear-gradient(135deg,#2a2a2a,#444);
@@ -176,7 +178,7 @@
     document.body.append(ovDark, ovEye);
 
     // FAB
-    const fab = el('div', { id: 'rm-fab' }, '🎨');
+    const fab = el('div', { id: 'rm-fab' }, '🌘');
     document.body.appendChild(fab);
 
     // Panel
@@ -297,10 +299,7 @@
         S.pos.y = Math.max(0, Math.min(y, window.innerHeight - ph));
         panel.style.left = S.pos.x + 'px';
         panel.style.top  = S.pos.y + 'px';
-        // FAB theo góc dưới-phải của panel
-        const fw = 36, gap = 8;
-        fab.style.left = (S.pos.x + pw - fw) + 'px';
-        fab.style.top  = (S.pos.y - fw - gap) + 'px';
+        // FAB cố định góc dưới phải — không cần cập nhật
     }
     // Init position
     setPos(S.pos.x, S.pos.y);
