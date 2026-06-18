@@ -1,4 +1,4 @@
-# 🌘 Reading Mode — "Tìm em, tìm em trong bóng đêm.."
+# 🌘 Reading Mode — "Bum xa cà bum"
 
 Userscript giảm độ tối màn hình để bảo vệ mắt khi đọc trong môi trường tối, kèm bộ lọc ánh sáng vàng, chế độ tập trung và auto-scroll để đọc truyện.
 
