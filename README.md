@@ -1,4 +1,4 @@
-# 🌘 Reading Mode — "Bum xa cà bum"
+# 🌘 Reading Mode — "Tìm em, tìm em trong bóng đêm.."
 
 Userscript giảm độ tối màn hình để bảo vệ mắt khi đọc trong môi trường tối, kèm bộ lọc ánh sáng vàng, chế độ tập trung và auto-scroll để đọc truyện.
 
@@ -41,12 +41,20 @@ Dòng gợi ý phím trong panel sẽ tự cập nhật theo cấu hình này.
 
 ## 📦 Cài đặt
 
-1. Cài tiện ích quản lý userscript: **[Tampermonkey](https://www.tampermonkey.net/)** hoặc **[Violentmonkey](https://violentmonkey.github.io/)**.
-2. Mở tiện ích → **Create a new script** (Tạo script mới).
-3. Xóa nội dung mẫu, dán toàn bộ nội dung file [`script.user.js`](script.user.js) vào.
-4. Nhấn **Ctrl + S** để lưu.
+> Cần cài **[Tampermonkey](https://www.tampermonkey.net/)** hoặc **[Violentmonkey](https://violentmonkey.github.io/)** trước.
 
-Script sẽ tự chạy trên mọi trang. Bấm nút 🌘 ở góc dưới phải để mở bảng điều khiển.
+**[👉 Bấm vào đây để cài đặt](https://raw.githubusercontent.com/azuzuzuzuzu/READING-MODE/main/script.user.js)**
+
+Khi đã cài sẵn Tampermonkey/Violentmonkey, bấm link trên sẽ mở thẳng trang cài đặt với nút **Install**. Sau khi cài, script tự chạy trên mọi trang — bấm nút 🌘 ở góc dưới phải để mở bảng điều khiển.
+
+<details>
+<summary>Cài thủ công (nếu link trên không hoạt động)</summary>
+
+1. Mở tiện ích → **Create a new script** (Tạo script mới).
+2. Xóa nội dung mẫu, dán toàn bộ nội dung file [`script.user.js`](script.user.js) vào.
+3. Nhấn **Ctrl + S** để lưu.
+
+</details>
 
 ## 📝 Ghi chú
 
